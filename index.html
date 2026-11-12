@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="GameVault: descubra, avalie e organize seus jogos favoritos.">
+  <meta name="theme-color" content="#0b0d14">
+  <title>GameVault — Descubra seu próximo jogo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="GameVault, página inicial">
+      <span class="brand-mark">G</span><span>GAME<span class="brand-accent">VAULT</span></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <a class="nav-link active" href="#inicio">Início</a>
+      <a class="nav-link" href="#catalogo">Explorar</a>
+      <a class="nav-link" href="#recomendacoes">Recomendações</a>
+      <a class="nav-link" href="#favoritos">Minha biblioteca <span class="nav-count" id="favoriteCount">0</span></a>
+    </nav>
+    <a class="header-cta" href="#catalogo">Encontrar jogos <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> SUA PRÓXIMA AVENTURA COMEÇA AQUI</p>
+        <h1>Encontre o jogo<br>que vai <span class="gradient-text">marcar você.</span></h1>
+        <p class="hero-copy">Explore mundos, descubra novas histórias e encontre seu próximo jogo favorito em um só lugar.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#catalogo">Explorar catálogo <span>→</span></a>
+          <a class="button button-ghost" href="#recomendacoes">Ver recomendações</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong id="gameTotal">12</strong><span>jogos no catálogo</span></div>
+          <div><strong>06</strong><span>gêneros diferentes</span></div>
+          <div><strong>∞</strong><span>mundos para explorar</span></div>
+        </div>
+      </div>
+      <div class="hero-art" aria-label="Destaque de jogos">
+        <div class="art-orbit orbit-one"></div><div class="art-orbit orbit-two"></div>
+        <div class="floating-chip chip-top">✦ ESCOLHA DO EDITOR</div>
+        <div class="feature-cover">
+          <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=900&q=85" alt="Setup gamer iluminado">
+          <div class="cover-shade"></div>
+          <div class="feature-label"><span>DESTAQUE DA SEMANA</span><strong>O próximo universo<br>está esperando.</strong></div>
+        </div>
+        <div class="floating-chip chip-bottom">★ <span>Descubra algo novo</span></div>
+      </div>
+    </section>
+
+    <section class="section trending-section" id="catalogo">
+      <div class="section-heading">
+        <div><p class="eyebrow">CURADORIA GAMEVAULT</p><h2>Explore o catálogo<span class="heading-period">.</span></h2><p class="section-subtitle">Uma seleção para todos os estilos de jogador.</p></div>
+        <span class="result-count" id="resultCount">12 jogos encontrados</span>
+      </div>
+      <div class="toolbar">
+        <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar por nome ou gênero..." aria-label="Buscar jogos"></label>
+        <div class="filter-wrap">
+          <label for="genreFilter" class="sr-only">Filtrar por gênero</label>
+          <select id="genreFilter"><option value="Todos">Todos os gêneros</option><option>Ação</option><option>Aventura</option><option>RPG</option><option>Estratégia</option><option>Esporte</option><option>Sobrevivência</option></select>
+        </div>
+        <select id="sortFilter" aria-label="Ordenar jogos"><option value="featured">Em destaque</option><option value="rating">Melhor avaliados</option><option value="az">Nome: A–Z</option></select>
+      </div>
+      <div class="game-grid" id="gameGrid" aria-live="polite"></div>
+      <p class="empty-state hidden" id="emptyState">Nenhum jogo encontrado. Tente outro nome ou gênero.</p>
+    </section>
+
+    <section class="recommend-section" id="recomendacoes">
+      <div class="recommend-copy"><p class="eyebrow">SUA PRÓXIMA DESCOBERTA</p><h2>Não sabe o que jogar?<br><span class="gradient-text">A gente te ajuda.</span></h2><p>Receba uma sugestão aleatória do nosso catálogo e descubra uma aventura que talvez ainda não esteja no seu radar.</p><button class="button button-primary" id="surpriseButton">Surpreenda-me <span>✦</span></button></div>
+      <div class="recommend-result" id="recommendResult"><div class="recommend-icon">✦</div><span>RECOMENDAÇÃO ALEATÓRIA</span><strong>Seu próximo jogo<br>pode estar aqui.</strong><small>Clique no botão para descobrir.</small></div>
+    </section>
+
+    <section class="section library-section" id="favoritos">
+      <div class="section-heading"><div><p class="eyebrow">SEU ESPAÇO</p><h2>Minha biblioteca<span class="heading-period">.</span></h2><p class="section-subtitle">Os jogos que você marcou como favoritos.</p></div><span class="result-count" id="libraryCount">0 favoritos</span></div>
+      <div class="game-grid" id="favoriteGrid"></div>
+      <p class="empty-state" id="favoriteEmpty">Sua biblioteca ainda está vazia. Use o ícone de coração nos jogos para adicioná-los aqui.</p>
+    </section>
+
+    <section class="about-strip">
+      <div class="about-symbol">G<span>V</span></div>
+      <div><p class="eyebrow">SOBRE A PLATAFORMA</p><h2>Mais que uma lista.<br>Um ponto de encontro para jogadores.</h2></div>
+      <p>O GameVault é um projeto independente criado para reunir catálogo, avaliações e descobertas em uma experiência simples e intuitiva.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand" href="#inicio"><span class="brand-mark">G</span><span>GAME<span class="brand-accent">VAULT</span></span></a>
+    <p>Projeto autoral desenvolvido com HTML, CSS e JavaScript.</p>
+    <span>© <span id="year"></span> GameVault. Projeto acadêmico.</span>
+  </footer>
+
+  <dialog class="game-dialog" id="gameDialog">
+    <button class="dialog-close" id="dialogClose" aria-label="Fechar">×</button>
+    <div id="dialogContent"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
